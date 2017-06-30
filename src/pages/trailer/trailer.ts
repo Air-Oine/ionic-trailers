@@ -13,8 +13,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'trailer.html',
 })
 export class TrailerPage {
+  trailer: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    let param = navParams.get('trailer');
+    console.log(param);
+    if(param) {
+      this.trailer = param;
+    }
   }
 
   ionViewDidLoad() {

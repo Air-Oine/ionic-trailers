@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import {ApiService} from '../../services/api.service';
+import {TrailerPage} from '../trailer/trailer';
+
+import * as lodash from 'lodash';
 
 /**
  * Generated class for the TrailersPage page.
@@ -12,7 +15,7 @@ import {ApiService} from '../../services/api.service';
 @IonicPage()
 @Component({
   selector: 'page-trailers',
-  templateUrl: 'trailers.html',
+  templateUrl: 'trailers.html'
 })
 export class TrailersPage {
 
@@ -26,16 +29,16 @@ export class TrailersPage {
     this.api.getTrailers()
       .subscribe(
         trailers => {
-          console.log('Trailers', trailers);
-          this.trailers = trailers;
+          console.log('Trailers', trailers.json());
+          
+          this.trailers = lodash.sortBy(trailers.json(), ['title']);
         },
         error => console.log('Error Http', error)
       );
   }
 
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TrailersPage');
+  openDetail(trailer: any) {
+    this.navCtrl.push(TrailerPage, {trailer: trailer});
   }
 
 }

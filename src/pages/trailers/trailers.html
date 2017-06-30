@@ -9,5 +9,13 @@
 
 
 <ion-content padding>
-
+  <ion-list>
+    <ion-item *ngFor="let trailer of trailers" (click)="openDetail(trailer)">
+      <ion-avatar item-start>
+        <img src="{{trailer.poster}}">
+      </ion-avatar>
+      <h2>{{trailer.title}}</h2>
+      <p>{{trailer.genre}}</p>
+    </ion-item>
+  </ion-list>
 </ion-content>

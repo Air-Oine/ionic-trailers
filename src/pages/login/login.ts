@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { FormsModule }  from '@angular/forms';
 
-/**
- * Generated class for the LoginPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 @IonicPage()
 @Component({
   selector: 'page-login',
@@ -14,11 +9,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class LoginPage {
 
+  email: string = "";
+  password: string = "";
+  rememberMe: boolean = true;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-  }
+  save() {
+    //Check password
+    if(this.password === "123456") {
+      var user = {email: this.email, password: this.password, rememberMe: this.rememberMe};
 
+      window.localStorage.setItem('user', JSON.stringify(user));
+    }
+
+    this.navCtrl.goToRoot(null);
+  }
 }
